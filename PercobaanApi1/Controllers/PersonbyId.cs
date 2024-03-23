@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿/*using Microsoft.AspNetCore.Mvc;
 using PercobaanApi1.Models;
 
 namespace PercobaanApi1.Controllers
@@ -25,3 +25,4 @@ namespace PercobaanApi1.Controllers
         }
     }
 }
+*/
