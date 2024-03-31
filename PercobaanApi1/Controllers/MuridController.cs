@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using PercobaanApi1.Models;
 namespace PercobaanApi1.Controllers
 {
-    public class MuridAdd : Controller
+    public class MuridController : Controller
     {
         private string __contstr;
-        public MuridAdd(IConfiguration configuration)
+        public MuridController(IConfiguration configuration)
         {
             __contstr = configuration.GetConnectionString("WebApiDatabase");
         }
@@ -31,19 +31,6 @@ namespace PercobaanApi1.Controllers
 
         }
 
-    }
-
-    public class MuridList : Controller
-    {
-        private string __contstr;
-        public MuridList(IConfiguration configuration)
-        {
-            __contstr = configuration.GetConnectionString("WebApiDatabase");
-        }
-        public IActionResult Index()
-        {
-            return View();
-        }
         [HttpGet("api/murid")]
         public ActionResult<Murid> ListPerson()
         {
@@ -51,19 +38,7 @@ namespace PercobaanApi1.Controllers
             List<Murid> ListMurid = context.ListMurid();
             return Ok(ListMurid);
         }
-    }
 
-    public class MuridUpdate : Controller
-    {
-        private string __contstr;
-        public MuridUpdate(IConfiguration configuration)
-        {
-            __contstr = configuration.GetConnectionString("WebApiDatabase");
-        }
-        public IActionResult Index()
-        {
-            return View();
-        }
         [HttpPut("api/murid/update/{id_person}")]
         public ActionResult UpdateMurid(int id_murid, Murid murid)
         {
@@ -78,20 +53,7 @@ namespace PercobaanApi1.Controllers
                 return BadRequest($"Gagal mengupdate murid, Error: {ex.Message}");
             }
         }
-    }
 
-    public class MuridDelete : Controller
-    {
-        private string __contstr;
-
-        public MuridDelete(IConfiguration configuration)
-        {
-            __contstr = configuration.GetConnectionString("WebApiDatabase");
-        }
-        public IActionResult Index()
-        {
-            return View();
-        }
         [HttpDelete("api/murid/delete/{id_murid}")]
         public ActionResult DeletePerson(int id_murid)
         {
@@ -101,7 +63,7 @@ namespace PercobaanApi1.Controllers
                 context.DeleteMurid(id_murid);
                 return Ok($"Murid dengan Id {id_murid} berhasil dihapus");
 
-            }   
+            }
             catch (Exception ex)
             {
                 return BadRequest($"Gagal menghapus murid, Error: {ex.Message}");

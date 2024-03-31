@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using PercobaanApi1.Models;
 namespace PercobaanApi1.Controllers
 {
-    public class PersonAdd : Controller
+    public class PersonController : Controller
     {
         private string __contstr;
-        public PersonAdd(IConfiguration configuration)
+        public PersonController(IConfiguration configuration)
         {
             __contstr = configuration.GetConnectionString("WebApiDatabase");
         }
@@ -30,20 +30,6 @@ namespace PercobaanApi1.Controllers
             }
 
         }
-
-    }
-
-    public class PersonController : Controller
-    {
-        private string __contstr;
-        public PersonController(IConfiguration configuration)
-        {
-            __contstr = configuration.GetConnectionString("WebApiDatabase");
-        }
-        public IActionResult Index()
-        {
-            return View();
-        }
         [HttpGet("api/person")]
         public ActionResult<Person> ListPerson()
         {
@@ -51,19 +37,7 @@ namespace PercobaanApi1.Controllers
             List<Person> ListPerson = context.ListPerson();
             return Ok(ListPerson);
         }
-    }
 
-    public class PersonUpdate : Controller
-    {
-        private string __contstr;
-        public PersonUpdate(IConfiguration configuration)
-        {
-            __contstr = configuration.GetConnectionString("WebApiDatabase");
-        }
-        public IActionResult Index()
-        {
-            return View();
-        }
         [HttpPut("api/person/update/{id_person}")]
         public ActionResult UpdatePerson(int id_person, Person person)
         {
@@ -73,34 +47,21 @@ namespace PercobaanApi1.Controllers
                 context.UpdatePerson(id_person, person);
                 return Ok($"Person dengan Id {id_person} sukses diupdate");
             }
-             catch (Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest($"Gagal mengupdate user, Error: {ex.Message}");
             }
         }
-    }
 
-    public class PersonDelete : Controller
-    {
-        private string __contstr;
-
-        public PersonDelete (IConfiguration configuration)
-        {
-            __contstr = configuration.GetConnectionString("WebApiDatabase");
-        }
-        public IActionResult Index ()
-        {
-            return View();
-        }
         [HttpDelete("api/person/delete/{id_person}")]
-        public ActionResult DeletePerson (int id_person)
+        public ActionResult DeletePerson(int id_person)
         {
             try
             {
                 var context = new PersonContext(__contstr);
                 context.DeletePerson(id_person);
                 return Ok($"Person dengan Id {id_person} berhasil dihapus");
-                
+
             }
             catch (Exception ex)
             {
