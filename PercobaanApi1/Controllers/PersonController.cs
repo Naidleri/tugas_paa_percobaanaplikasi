@@ -15,6 +15,14 @@ namespace PercobaanApi1.Controllers
             return View();
         }
 
+        [HttpPost("api/person_auth"), Authorize]
+        public ActionResult<Person> ListPersonWithAuth()
+        {
+            PersonContext context = new PersonContext(this.__contstr);
+            List<Person> ListPerson = context.ListPerson();
+            return Ok(ListPerson);
+        }
+
         [HttpPost("api/person/create")]
         public ActionResult CreatePerson(Person person) 
         {
@@ -30,6 +38,7 @@ namespace PercobaanApi1.Controllers
             }
 
         }
+
         [HttpGet("api/person")]
         public ActionResult<Person> ListPerson()
         {
