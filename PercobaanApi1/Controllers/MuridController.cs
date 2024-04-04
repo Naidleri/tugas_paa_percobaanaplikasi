@@ -15,7 +15,7 @@ namespace PercobaanApi1.Controllers
             return View();
         }
 
-        [HttpPost("api/murid/create")]
+        [HttpPost("api/murid/create") , Authorize]
         public ActionResult CreateMurid(Murid murid)
         {
             try
@@ -31,7 +31,7 @@ namespace PercobaanApi1.Controllers
 
         }
 
-        [HttpGet("api/murid")]
+        [HttpGet("api/murid") , Authorize]
         public ActionResult<Murid> ListPerson()
         {
             MuridContext context = new MuridContext(this.__contstr);
@@ -39,7 +39,7 @@ namespace PercobaanApi1.Controllers
             return Ok(ListMurid);
         }
 
-        [HttpPut("api/murid/update/{id_person}")]
+        [HttpPut("api/murid/update/{id_person}"), Authorize]
         public ActionResult UpdateMurid(int id_murid, Murid murid)
         {
             try
@@ -54,7 +54,7 @@ namespace PercobaanApi1.Controllers
             }
         }
 
-        [HttpDelete("api/murid/delete/{id_murid}")]
+        [HttpDelete("api/murid/delete/{id_murid}"), Authorize]
         public ActionResult DeletePerson(int id_murid)
         {
             try
