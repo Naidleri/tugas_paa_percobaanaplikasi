@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using PercobaanApi1.tugas;
 
 namespace PercobaanApi1.Controllers
 {

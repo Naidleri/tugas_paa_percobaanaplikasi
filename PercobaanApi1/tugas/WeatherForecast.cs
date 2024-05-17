@@ -1,4 +1,4 @@
-namespace PercobaanApi1
+namespace PercobaanApi1.tugas
 {
     public class WeatherForecast
     {
